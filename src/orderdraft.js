@@ -9,7 +9,7 @@ class OrderDraft extends Component {
     table: 0,
     seats: [{Calamari: "ds"}]
   }
-
+//nothing
   constructor(props) {
     super(props)
     this.changeState = this.changeState.bind(this)
