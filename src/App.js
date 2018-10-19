@@ -8,10 +8,6 @@ class App extends Component {
       {
         table: 3,
         seats: [{Calamari: []}, {Pao: ["No butter"]}],
-      },
-      {
-        table: 0,
-        seats: [{Calamari: []}, {Pao: ["No butter"]}],
       }
     ],
     dishes: ["Croissant", "Bacon", "Soup"],
@@ -20,9 +16,17 @@ class App extends Component {
     super()
     this.onAddOrder = this.onAddOrder.bind(this)
   }
-  onAddOrder (order) {
+  onAddOrder (order, table) {
     const state = Object.assign({}, this.state)
-    state.orders.push(order)
+    const newstate = {
+      table: table,
+      seats: order
+
+  }
+  console.log(table)
+  console.log(newstate)
+  console.log(this.state)
+    state.orders.push(newstate)
     this.setState(state)
   }
 

@@ -7,13 +7,14 @@ class OrderDraft extends Component {
   state = {
     hasTable: false,
     table: 0,
-    seats: [{Calamari: "ds"}]
+    seats: [{Calamari: ["ds"]}]
   }
-//nothing
+//git test
   constructor(props) {
     super(props)
     this.changeState = this.changeState.bind(this)
     this.addDish = this.addDish.bind(this)
+    this.punchOrder = this.punchOrder.bind(this)
   }
 
   changeState() {
@@ -26,10 +27,14 @@ class OrderDraft extends Component {
     let dish = document.querySelector('#dish').value
     let requests = document.querySelector('#requests').value
     const curorder = this.state
-    curorder.seats.push({[dish]: requests})
+    curorder.seats.push({[dish]: [requests]})
     this.setState(curorder)
     document.querySelector('#requests').value = ""
     document.querySelector('#dish').value =  this.props.dishes[0]
+  }
+
+  punchOrder() {
+    this.props.onAddOrder(this.state.seats, this.state.table)
   }
 
   render() {
@@ -41,6 +46,7 @@ class OrderDraft extends Component {
         changeForm={this.changeForm}
         addDish={this.addDish}
         draft={this.state.seats}
+        punchOrder={this.punchOrder}
       />
     )
   }

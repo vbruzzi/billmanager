@@ -37,6 +37,9 @@ function TableCheck(props) {
             </tr>
             </tbody>
           </table>
+          <button onClick={props.punchOrder}>
+            ADD
+          </button>
         </div>
       )
     } else {
