@@ -1,45 +1,64 @@
 import React from 'react'
+import Button from '@material-ui/core/Button'
+import Table from '@material-ui/core/Table'
+import TableHead from '@material-ui/core/TableHead'
+import TableBody from '@material-ui/core/TableBody'
+import TableRow from '@material-ui/core/TableRow'
+import TableCell from '@material-ui/core/TableCell'
+import Input from '@material-ui/core/Input'
+import Select from '@material-ui/core/Select'
+import MenuItem from '@material-ui/core/MenuItem';
+import { withStyles } from '@material-ui/core/styles';
+
+//SETS INPUT FORM TO BUILD ORDER DRAFT 
+
+const styles = theme => ({
+  table: {
+    maxWidth: 600,
+  }
+
+})
+
 
 function TableCheck(props) {
-    if (props.hasTable == true) {
+    if (props.hasTable === true) {
       return (
         <div>
           <label>
-            <select value={props.dish} id="dish">
+            <Select value={props.dish} id="dish" onChange={props.handleChange}>
               {props.dishes.map((dish) => {
-                return <option key={dish} value={dish}>{dish}</option>
+                return <MenuItem key={dish} value={dish}>{dish}</MenuItem>
               })}
-            </select>
+            </Select>
           </label>
-          <input id="requests" type="text">
-          </input>
-          <button onClick={props.addDish}>ADD</button>
-          <table>
-          <thead>
-            <tr>
-              <th>Order</th>
-            </tr>
-          </thead>
-            <tbody>
-            <tr>
+          <Input id="requests" type="text">
+          </Input>
+          <Button onClick={props.addDish}>ADD</Button>
+          <Table>
+            <TableHead>
+              <TableRow>
+               <TableCell>Order</TableCell>
+             </TableRow>
+            </TableHead>
+            <TableBody>
               {props.draft.map((x, index) => {
                 return (
-                  <div>
-                    <td key={index}>{Object.keys(x)}</td>
-                    <ul>
-                      {Object.values(x).map((y, index2) => (
-                        <li key={index2}>{y}</li>
-                      ))}
-                    </ul>
-                  </div>
+                  <TableRow>
+                    <TableCell key={index}>{Object.keys(x)}
+                      <ul>
+                        {Object.values(x).map((y, index2) => (
+                          <li key={index2}>{y}</li>
+                        ))}
+                      </ul>
+                    </TableCell>
+                  </TableRow>
                 )
               })}
-            </tr>
-            </tbody>
-          </table>
-          <button onClick={props.punchOrder}>
+            </TableBody>
+          </Table>
+          <Button onClick={props.punchOrder}>
             ADD
-          </button>
+          </Button>
         </div>
       )
     } else {
@@ -49,10 +68,10 @@ function TableCheck(props) {
             id="table"
             type="number"
           />
-          <button onClick={props.changeState}>ADD</button>
+          <Button onClick={props.changeState}>ADD</Button>
         </div>
       )
     }
   }
 
-  export default TableCheck
+  export default withStyles(styles)(TableCheck);
