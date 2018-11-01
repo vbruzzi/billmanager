@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import OrderDraft from './orderdraft'
 import DisplayBills from './displaybills'
+import Grid from '@material-ui/core/Grid'
 
 class App extends Component {
   state = {
@@ -10,7 +11,10 @@ class App extends Component {
         seats: [{Calamari: []}, {Pao: ["No butter"]}],
       }
     ],
-    dishes: ["Croissant", "Bacon", "Soup"],
+    dishes: [
+      {Fettucini: ["Chicken", "Fish", "GF"]},
+      {Tacos: ["Beef", "Chicken", "Soy"]},
+    ],
   }
   constructor() {
     super()
@@ -23,22 +27,23 @@ class App extends Component {
       seats: order
 
   }
-  console.log(table)
-  console.log(newstate)
-  console.log(this.state)
     state.orders.push(newstate)
     this.setState(state)
   }
 
   render() {
     return (
-      <div>
+      <Grid
+      container
+      direction="column"
+      justify="flex-start"
+      alignItems="center">
         <OrderDraft
           onAddOrder={this.onAddOrder}
           dishes={this.state.dishes}
         />
       <DisplayBills orders={this.state.orders}/>
-    </div>
+     </Grid>
     )
   }
 }

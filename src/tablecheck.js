@@ -1,31 +1,144 @@
 import React from 'react'
 import Button from '@material-ui/core/Button'
-import Table from '@material-ui/core/Table'
-import TableHead from '@material-ui/core/TableHead'
-import TableBody from '@material-ui/core/TableBody'
-import TableRow from '@material-ui/core/TableRow'
-import TableCell from '@material-ui/core/TableCell'
-import Input from '@material-ui/core/Input'
-import Select from '@material-ui/core/Select'
-import MenuItem from '@material-ui/core/MenuItem';
-import { withStyles } from '@material-ui/core/styles';
+import TextField from '@material-ui/core/TextField'
+import { withTheme } from '@material-ui/core/styles'
+import { createMuiTheme } from '@material-ui/core/styles'
+import Card from '@material-ui/core/Card'
+import CardActions from '@material-ui/core/CardActions'
+import CardContent from '@material-ui/core/CardContent'
+import Typography from '@material-ui/core/Typography'
+import Grid from '@material-ui/core/Grid'
+import List from '@material-ui/core/List'
+import ListItem from '@material-ui/core/ListItem'
+import { Checkbox } from '@material-ui/core';
 
-//SETS INPUT FORM TO BUILD ORDER DRAFT 
 
-const styles = theme => ({
-  table: {
-    maxWidth: 600,
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      main: '#A9A9A9',
+    }
+  },
+});
+
+class TableCheck extends React.Component {
+  state = {
+    hasTable: false,
+    table: "",
+    seats: [],
+  }
+  constructor(props) {
+    super(props)
+    this.changeTable = this.changeTable.bind(this)
+    this.addOrder = this.addOrder.bind(this)
   }
 
-})
+  changeTable(event) {
+    this.setState({table: event.target.value})
+  }
+  addOrder(tempDish) {
+    const tempState = this.state
+    tempState.seats.push(tempDish)
+    this.setState(tempState)
+    console.log(this.state)
 
+  }
+  render() {
+    if(this.state.hasTable === false) {
+      return(
 
-function TableCheck(props) {
-    if (props.hasTable === true) {
+        <form
+          onSubmit={(event) => {
+            this.setState({hasTable: true})
+            event.preventDefault()
+            
+          }
+          }>
+          <Grid
+            container
+            direction="row"
+            justify="center"
+            alignItems="center"
+          >  
+            <TextField
+              id="outlined-number"
+              type="number"
+              variant="outlined"
+              value={this.state.table}
+              onChange={this.changeTable}
+            />
+            <Button 
+            type="submit">ADD</Button>
+          </Grid>
+        </form>
+     )
+    } else {
       return (
-        <div>
+        <Grid
+          container
+          direction="row"
+          justify="center"
+          alignItems="center"
+        >
+        {this.props.dishes.map((dish, index) => {
+          const dishName = Object.keys(dish)
+          let tempDish = {[dishName]: []}
+          return (
+            <Card>
+            <CardContent>
+              <Typography 
+                variant="h5" 
+                component="h2"
+                key={index}  
+              >
+                {dishName}
+              </Typography>
+            </CardContent>
+            <CardContent>
+              <List>
+                {Object.values(dish).map((arr) => {
+                  return (
+                    <div>
+                  {arr.map((option, ind) => {
+                    return (
+                      <ListItem>
+                        <Checkbox
+                        
+                        id={option}
+                        onChange={() => {tempDish[dishName].push(option)
+                          console.log(tempDish)}}/>
+                        {option}
+                      </ListItem>
+                    )
+                  })}
+                  </div>
+                  )
+                })}
+              </List>
+            </CardContent>
+            <CardActions>
+              <button
+              onClick={() => this.addOrder(tempDish)}
+              >
+              ADD</button>
+            </CardActions>
+          </Card>
+          )
+        })}
+        </Grid>
+      )
+    }
+  }
+}
+
+  export default withTheme(theme)(TableCheck);
+
+
+  /*
+
+  <div>
           <label>
-            <Select value={props.dish} id="dish" onChange={props.handleChange}>
+            <Select value={props.currentSelect} id="dish" onChange={props.handleChange}>
               {props.dishes.map((dish) => {
                 return <MenuItem key={dish} value={dish}>{dish}</MenuItem>
               })}
@@ -58,20 +171,11 @@ function TableCheck(props) {
           </Table>
           <Button onClick={props.punchOrder}>
             ADD
-          </Button>
+          </Bu666jjton>
         </div>
-      )
-    } else {
-      return(
-        <div>
-          <input
-            id="table"
-            type="number"
-          />
-          <Button onClick={props.changeState}>ADD</Button>
-        </div>
-      )
-    }
-  }
 
-  export default withStyles(styles)(TableCheck);
+
+
+
+
+  */

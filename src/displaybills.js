@@ -18,13 +18,17 @@ class DisplayBill extends Component {
             <TableCell>Table</TableCell>
             <TableCell>Order</TableCell>
             <TableCell>Time Elapsed</TableCell>
-            <TableCell>Time Elapsed</TableCell>
+            <TableCell></TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
          { /* maps through the orders */ }
           {this.props.orders.map((x, index) => (
             <TableRow key={index}>
+            <TableCell>
+              {x.table}
+            </TableCell>
+
               <TableCell>
               { /* maps through the seats in each order */ }
                 {x.seats.map((y, index2) => (
