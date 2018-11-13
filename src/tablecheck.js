@@ -27,16 +27,18 @@ class TableCheck extends React.Component {
     this.draftAdd = this.draftAdd.bind(this)
   }
 
-  changeTable(event) {
+  changeTable(event) { //event is the table num
     this.setState({table: event.target.value})
   }
-  draftAdd(tempDish) {
-    console.log(this.state)
-    console.log(tempDish)
+  draftAdd(tempDish) { //tempDish is the card you've added
+
     const tempState = this.state
+    console.log(tempState, "tempstate")
     tempState.seats.push(tempDish)
-    console.log(tempState)
+    console.log(tempState, "tempstate2")
     this.setState(tempState)
+    console.log(this.state, "state")
+    console.log("----------------------LINEBREAK------------------------")
 
   }
 
@@ -48,7 +50,7 @@ class TableCheck extends React.Component {
           onSubmit={(event) => {
             this.setState({hasTable: true})
             event.preventDefault()
-            
+
           }
           }>
           <Grid
@@ -56,7 +58,7 @@ class TableCheck extends React.Component {
             direction="row"
             justify="center"
             alignItems="center"
-          >  
+          >
             <TextField
               id="outlined-number"
               type="number"
@@ -64,7 +66,7 @@ class TableCheck extends React.Component {
               value={this.state.table}
               onChange={this.changeTable}
             />
-            <Button 
+            <Button
             type="submit">ADD</Button>
           </Grid>
         </form>
@@ -84,6 +86,7 @@ class TableCheck extends React.Component {
               key={index}
               dishName = {dish}
               draftAdd={this.draftAdd}
+              test={this.state}
               />
             )
           })}

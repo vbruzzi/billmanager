@@ -22,8 +22,8 @@ class DisplayDraft extends React.Component {
                     <TableBody>
                         {this.props.orderDraft.map((x, index) => {
                         return (
-                            <TableRow>
-                            <TableCell key={index}>{Object.keys(x)}
+                            <TableRow key={index}>
+                            <TableCell>{Object.keys(x)}{index}
                                 {Object.values(x).map((y, index2) => {
                                     return (
                                         <ul key={index2}>

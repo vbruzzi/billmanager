@@ -26,7 +26,7 @@ class App extends Component {
       table: table,
       seats: order
 
-  }
+    }
     state.orders.push(newstate)
     this.setState(state)
   }
@@ -39,7 +39,7 @@ class App extends Component {
       justify="flex-start"
       alignItems="center">
         <OrderDraft
-          onAddOrder={this.onAddOrder}
+          onAddOrder={() => this.onAddOrder}
           dishes={this.state.dishes}
         />
       <DisplayBills orders={this.state.orders}/>
