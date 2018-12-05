@@ -16,26 +16,13 @@ export class Table extends Component {
             id: this.props.id,
             seats: this.props.seats
         }
-        this.remove = this.remove.bind(this)
         this.addSeat = this.addSeat.bind(this)
     }
 
     addSeat() {
-        this.state.seats.push({
-            id: this.state.seats.length,
-            orders: []
-        })
-
-        this.setState(this.state)
+        this.props.addSeat(this.state.id)
     }
-
-    removeSeat(seatId) {
-        this.setState(this.state.seats.filter((s => s.id === seatId)))
-    }
-
-    remove() {
-        this.props.removeTable(this.props.id)
-    }
+   
 
     render() {
         return (
@@ -43,12 +30,16 @@ export class Table extends Component {
                 <h2>Table {this.props.id}</h2>
                 <Grid item xs={12}>
                     <Button onClick={this.addSeat}>Add Seat</Button>
-                    <Button onClick={this.remove}>Remove table</Button>
+                    <Button onClick={this.props.addTable}>Add Table</Button>
                 </Grid>
                 <Grid item xs={12}>
                     <Grid container direction="row">
                         {this.props.seats.map((seat, index) => (
-                            <Seat {...seat} key={index}/>
+                            <Seat 
+                            addDishes={this.props.addDishes}
+                            {...seat} 
+                            key={index} 
+                            removeSeat={this.props.removeSeat} />
                         ))}
                     </Grid>
                 </Grid>

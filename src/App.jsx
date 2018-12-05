@@ -1,16 +1,14 @@
 import React, {Component} from 'react'
-import {Tables} from './components/Tables'
+import {Main} from './components/Main'
 
 class App extends Component {
     state = {
         dishes: [
             {
-                id: "Fettucini",
-                options: ["Chicken", "Fish", "GF"]
+                id: "Fettucini"
             },
             {
-                id: "Tacos",
-                variations: ["Beef", "Chicken", "Soy"]
+                id: "Tacos"
             },
         ],
         tables: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
@@ -32,7 +30,7 @@ class App extends Component {
 
     render() {
         return (
-            <Tables tables={this.state.tables}/>
+            <Main tableList={this.state.tables}/>    
         )
     }
 }

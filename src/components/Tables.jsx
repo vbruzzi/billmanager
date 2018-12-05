@@ -7,39 +7,79 @@ import {Table} from './Table'
 export class Tables extends Component {
 
     state = {
-        tables: localStorage.getItem('tables') || []
+        id: null,
+        seats: [
+
+        ]
     }
 
     constructor(props) {
         super(props)
+        this.openTable = this.openTable.bind(this)
+        this.addSeat = this.addSeat.bind(this)
+        this.removeSeat = this.removeSeat.bind(this)
         this.addTable = this.addTable.bind(this)
-        this.removeTable = this.removeTable.bind(this)
     }
 
-    addTable(table) {
-        this.state.tables.push({
-            id: table,
+    openTable(table) {
+        this.props.tables.map((x) => {
+            if(x.id === table){
+                this.setState(x)
+                
+        } else 
+            this.setState({id: table, seats: []})
+        })
+    }
+    
+    addSeat(seatId) {
+        this.state.seats.push({
+            id: this.state.seats.length,
             seats: []
         })
         this.setState(this.state)
     }
+    
+    removeSeat(seatId) {
+        this.setState({seats: this.state.seats.filter(x => x.id !== seatId)})
+    }
 
-    removeTable(tableId) {
-        this.setState({tables: this.state.tables.filter((t => t.id !== tableId))})
+    addTable() {
+        this.props.addTable(this.state)
+        this.setState({id:null,seats:[]})
     }
 
     render() {
         return (
             <Grid container>
                 <Grid item xs={12}>
-                    <AddTable addTable={this.addTable} tables={this.props.tables}/>
+                    <AddTable openTable={this.openTable} tables={this.props.tableList}/>
                 </Grid>
                 <Grid item xs={12}>
-                    {this.state.tables.map((table, index) =>
-                        <Table {...table} removeTable={this.removeTable} key={index}/>
-                    )}
+                    {this.state.id ? 
+                        <Table 
+                        seats={this.state.seats}
+                        id={this.state.id}
+                        addSeat={this.addSeat}
+                        removeSeat={this.removeSeat}
+                        addTable={this.addTable}
+                        addDishes={this.props.addDishes}
+                        ></Table>: console.log("no")}
+                    
+                </Grid>
+                <Grid item xs={12}>
                 </Grid>
             </Grid>
         )
     }
 }
+
+
+/*
+{this.state.tables.map((table, index) =>
+                        <Table {...table} removeTable={this.removeTable} key={index}/>
+                    )}
+
+
+                    
+                    <DisplayTables></DisplayTables>
+                    */

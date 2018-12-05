@@ -1,17 +1,11 @@
 import React, {Component} from 'react'
 import Grid from "@material-ui/core/Grid/Grid"
 import Button from "@material-ui/core/Button/Button"
-import TextField from "@material-ui/core/TextField/TextField"
-import Tooltip from "@material-ui/core/Tooltip"
 import Dialog from "@material-ui/core/Dialog"
-import DialogActions from "@material-ui/core/DialogActions"
 import DialogTitle from "@material-ui/core/DialogTitle"
 import DialogContent from '@material-ui/core/DialogContent'
 import DialogContentText from '@material-ui/core/DialogContentText'
-import Icon from '@material-ui/core/Icon'
 import AddIcon from '@material-ui/icons/Add'
-import cyan from '@material-ui/core/colors/cyan';
-import lightBlue from '@material-ui/core/colors/lightBlue';
 
 const style = {
     backgroundcolor: 'lightBlue',
@@ -37,8 +31,8 @@ export class AddTable extends Component {
     }
 
     add() {
-        if (this.props.addTable) {
-            this.props.addTable(this.state.value);
+        if (this.props.openTable) {
+            this.props.openTable(this.state.value);
             this.setState({value: ""})
         }
     }
@@ -46,6 +40,7 @@ export class AddTable extends Component {
     changeTable(e) {
         this.setState({value: e}, this.add)
         this.setState({open: false})
+        this.props.openTable(e)
     } 
     
     handleClickOpen = () => {
@@ -81,8 +76,3 @@ export class AddTable extends Component {
         )
     }
 }
-
-
-/* 
-<Icon onClick={this.handleClickOpen} style={style} >
-*/
