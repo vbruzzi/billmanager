@@ -19,6 +19,7 @@ export class Tables extends Component {
         this.addSeat = this.addSeat.bind(this)
         this.removeSeat = this.removeSeat.bind(this)
         this.addTable = this.addTable.bind(this)
+        this.addDishes = this.addDishes.bind(this);
     }
 
     openTable(table) {
@@ -34,7 +35,7 @@ export class Tables extends Component {
     addSeat(seatId) {
         this.state.seats.push({
             id: this.state.seats.length,
-            seats: []
+            dishes: []
         })
         this.setState(this.state)
     }
@@ -46,6 +47,16 @@ export class Tables extends Component {
     addTable() {
         this.props.addTable(this.state)
         this.setState({id:null,seats:[]})
+    }
+
+    addDishes(dishes, seatId) {
+        dishes.forEach(dish => this.state.seats.map((x) => {
+            if(x.id === seatId) {
+                x.dishes.push(dish)
+            }
+        })
+        );
+        this.setState(this.state);
     }
 
     render() {
@@ -62,7 +73,7 @@ export class Tables extends Component {
                         addSeat={this.addSeat}
                         removeSeat={this.removeSeat}
                         addTable={this.addTable}
-                        addDishes={this.props.addDishes}
+                        addDishes={this.addDishes}
                         ></Table>: console.log("no")}
                     
                 </Grid>

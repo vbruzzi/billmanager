@@ -25,6 +25,12 @@ export class Seat extends Component {
             dishes: this.props.dishes || []
         }
         this.removeSeat = this.removeSeat.bind(this);
+        this.addDishes = this.addDishes.bind(this);
+    }
+
+
+    addDishes(dishes, id) {
+        this.props.addDishes(dishes, id)
     }
 
 
@@ -62,7 +68,7 @@ export class Seat extends Component {
                         </List>
                     </div>
                     <CardActions>
-                        <DishSelector addDishes={this.props.addDishes}/>
+                        <DishSelector id={this.state.id} addDishes={this.addDishes}/>
                     </CardActions>
                 </CardContent>
             </Card>

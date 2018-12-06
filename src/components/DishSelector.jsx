@@ -12,16 +12,15 @@ import Checkbox from '@material-ui/core/Checkbox';
 export class DishSelector extends Component {
 
     state = {
+        id:this.props.id,
         open: false,
         checked: [],
         dishes: [
             {
                 name: 'Fettucini',
-                variations: ["Chicken", "Fish", "GF"]
             },
             {
                 name: 'Tacos',
-                variations: ["Beef", "Chicken", "Soy"]
             }
         ],
     };
@@ -34,7 +33,7 @@ export class DishSelector extends Component {
 
     addDishes() {
         this.props.addDishes(
-            this.state.dishes.filter(dish => this.state.checked.indexOf(dish.name) > -1)
+            this.state.dishes.filter(dish => this.state.checked.indexOf(dish.name) > -1), this.state.id
         );
         this.setState({open: false})
     }

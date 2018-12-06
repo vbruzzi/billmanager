@@ -9,7 +9,7 @@ export class Main extends Component {
                 id: 1,
                 seats: [
                     {   
-                        dishID: "fettucini"
+                        name: "fettucini"
                     }
                 ]
             }
@@ -29,11 +29,6 @@ export class Main extends Component {
 
     removeTable(table) {
         this.setState({tables: this.state.tables.filter(x => x.id !== table)})
-    }    
-    
-    addDishes(dishes) {
-        dishes.forEach(dish => this.state.dishes.push(dish))
-        this.setState(this.state)
     }
 
     render() {

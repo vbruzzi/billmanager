@@ -17,10 +17,15 @@ export class Table extends Component {
             seats: this.props.seats
         }
         this.addSeat = this.addSeat.bind(this)
+        this.addDishes = this.addDishes.bind(this);
     }
 
     addSeat() {
         this.props.addSeat(this.state.id)
+    }
+
+    addDishes(dishes, id) {
+        this.props.addDishes(dishes, id)
     }
    
 
@@ -35,11 +40,11 @@ export class Table extends Component {
                 <Grid item xs={12}>
                     <Grid container direction="row">
                         {this.props.seats.map((seat, index) => (
-                            <Seat 
-                            addDishes={this.props.addDishes}
+                            <Seat
                             {...seat} 
                             key={index} 
-                            removeSeat={this.props.removeSeat} />
+                            removeSeat={this.props.removeSeat}
+                            addDishes={this.addDishes} />
                         ))}
                     </Grid>
                 </Grid>
