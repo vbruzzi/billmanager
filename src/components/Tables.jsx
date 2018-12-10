@@ -52,7 +52,7 @@ export class Tables extends Component {
     addDishes(dishes, seatId) {
         dishes.forEach(dish => this.state.seats.map((x) => {
             if(x.id === seatId) {
-                x.dishes.push(dish)
+                x.dishes.push(dish.name)
             }
         })
         );

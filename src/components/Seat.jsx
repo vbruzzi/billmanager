@@ -59,7 +59,7 @@ export class Seat extends Component {
                         <List component="nav">
                             {this.state.dishes.length > 0 && this.state.dishes.map((dish, index) =>
                                 <ListItem button key={index}>
-                                    <ListItemText primary={dish.name} />
+                                    <ListItemText primary={dish} />
                                 </ListItem>
                             )}
                             {this.state.dishes.length <= 0 && (

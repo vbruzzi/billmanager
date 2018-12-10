@@ -9,7 +9,8 @@ export class Main extends Component {
                 id: 1,
                 seats: [
                     {   
-                        name: "fettucini"
+                        id: 0,
+                        dishes: ["Fettucini", "Tacos"]
                     }
                 ]
             }
@@ -23,12 +24,13 @@ export class Main extends Component {
     }
 
     addTable(table) {
-        this.state.tables.push(table)
+        this.state.tables.push({...table})
         this.setState(this.state)
+        console.log(this.state)
     }    
 
     removeTable(table) {
-        this.setState({tables: this.state.tables.filter(x => x.id !== table)})
+        this.setState({tables: this.state.tables.filter(x =>  x.id !== table)})
     }
 
     render() {

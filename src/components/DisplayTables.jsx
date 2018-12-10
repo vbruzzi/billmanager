@@ -32,7 +32,11 @@ export class DisplayTables extends Component {
               <TableCell>{x.id}</TableCell>
               <TableCell>{x.seats.map((y, index2) => (
                 <div key={index2}>
-                  {Object.values(y)}
+                S{y.id}
+                  <ul>
+                    {console.log(x)}
+                  {y.dishes.map((dish) => <li>{dish}</li> )}
+                  </ul>
                 </div>
               ))}
             </TableCell>
