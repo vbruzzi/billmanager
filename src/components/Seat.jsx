@@ -75,11 +75,3 @@ export class Seat extends Component {
         )
     }
 }
-
-
-
-/*{this.props.dishes.map((dish, index) => 
-                            <Button key={index}>{dish.id}</Button>
-                        )}
-
-                        */

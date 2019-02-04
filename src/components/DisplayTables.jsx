@@ -34,7 +34,6 @@ export class DisplayTables extends Component {
                 <div key={index2}>
                 S{y.id}
                   <ul>
-                    {console.log(x)}
                   {y.dishes.map((dish) => <li>{dish}</li> )}
                   </ul>
                 </div>

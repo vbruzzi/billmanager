@@ -5,15 +5,7 @@ import {DisplayTables} from './DisplayTables'
 export class Main extends Component {
     state = {
         tables: [
-            {
-                id: 1,
-                seats: [
-                    {   
-                        id: 0,
-                        dishes: ["Fettucini", "Tacos"]
-                    }
-                ]
-            }
+            
         ]
     }
 
@@ -34,19 +26,30 @@ export class Main extends Component {
     }
 
     render() {
-        return (
-            <div>
-                <DisplayTables
-                    tables={this.state.tables}
-                    removeTable={this.removeTable}
-                />
-                
+        if(this.state.tables.length == 0) {
+            return (
                 <Tables 
                     addTable={this.addTable} 
                     tableList={this.props.tableList} 
                     tables={this.state.tables}
                 />
-            </div>
-        )
+            )
+        } else {
+            return (
+                <div>
+                    
+                    <DisplayTables
+                    tables={this.state.tables}
+                    removeTable={this.removeTable}
+                    />
+                    <Tables 
+                    addTable={this.addTable} 
+                    tableList={this.props.tableList} 
+                    tables={this.state.tables}
+                    />
+                    
+                </div>
+            )
+        }
     }  
 }

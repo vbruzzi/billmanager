@@ -23,13 +23,17 @@ export class Tables extends Component {
     }
 
     openTable(table) {
-        this.props.tables.map((x) => {
-            if(x.id === table){
-                this.setState(x)
-                
-        } else 
-            this.setState({id: table, seats: []})
+        if (this.props.tables.length > 0) {
+            this.props.tables.map((x) => {
+                if(x.id === table){
+                    this.setState(x)
+            } else {
+                this.setState({id: table, seats: []})
+            }
         })
+        } else {
+            this.setState({id: table, seats: []})
+        }        
     }
     
     addSeat(seatId) {

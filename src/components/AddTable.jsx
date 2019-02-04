@@ -27,7 +27,6 @@ export class AddTable extends Component {
         super(props)
         this.add = this.add.bind(this)
         this.changeTable = this.changeTable.bind(this)
-        this.clickAdd = this.clickAdd.bind(this)
     }
 
     add() {
@@ -47,9 +46,6 @@ export class AddTable extends Component {
         this.setState({ open: true })
     }
 
-    clickAdd = (e) => {
-        this.add()
-    }
 
     
 
@@ -67,8 +63,7 @@ export class AddTable extends Component {
                             {this.props.tables.map((table, index) => 
                                 <Button key={index} onClick={() => {this.changeTable(table);}}>{table}</Button>
                             )}
-                            </DialogContentText>
-                            
+                            </DialogContentText>    
                         </DialogContent>
                     </Dialog>
                 </Grid>

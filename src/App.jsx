@@ -34,17 +34,5 @@ class App extends Component {
         )
     }
 }
-
-/*
-<Grid
-    container
-    direction="column"
-    justify="flex-start"
-    alignItems="center">
-    <OrderDraft onAddOrder={this.onAddOrder} dishes={this.state.dishes}/>
-    <DisplayBills orders={this.state.orders}/>
-</Grid>
- */
-
 export default App;
                                                                                                       
